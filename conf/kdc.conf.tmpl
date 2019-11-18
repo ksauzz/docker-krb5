@@ -1,0 +1,22 @@
+[kdcdefaults]
+    kdc_ports = 750,88
+
+[libdefaults]
+    rdns = false
+
+[logging]
+    default = CONSOLE
+
+[realms]
+    ${REALM} = {
+        database_name  = /var/lib/krb5kdc/db/principal
+        key_stash_file = /var/lib/krb5kdc/key/stash
+        admin_keytab = FILE:/var/lib/krb5kdc/key/kadm5.keytab
+        acl_file = /etc/krb5kdc/kadm5.acl
+        kdc_ports = 750,88
+        max_life = 7d 0h 0m 0s
+        max_renewable_life = 28d 0h 0m 0s
+        master_key_type = des3-hmac-sha1
+        supported_enctypes = aes256-cts:normal arcfour-hmac:normal des3-hmac-sha1:normal des-cbc-crc:normal des:normal des:v4 des:norealm des:onlyrealm des:afs3
+        default_principal_flags = +preauth
+    }
